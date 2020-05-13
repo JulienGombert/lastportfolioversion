@@ -54,6 +54,11 @@ if ( ! function_exists( 'portfoliojg_setup' ) ) :
 			)
 		);
 
+		//Add editor CSS to style the Wordpress visual post/page editor, ours mainnly
+		// pulls in all of our front-end css
+		add_editor_style( 'css/editor-style.css' );
+
+
 		/*
 		 * Switch default core markup for search form, comment form, and comments
 		 * to output valid HTML5.
@@ -115,29 +120,11 @@ function portfoliojg_content_width() {
 	// This variable is intended to be overruled from themes.
 	// Open WPCS issue: {@link https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/issues/1043}.
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
-	$GLOBALS['content_width'] = apply_filters( 'portfoliojg_content_width', 640 );
+	$GLOBALS['content_width'] = apply_filters( 'portfoliojg_content_width', 1140 );
 }
 add_action( 'after_setup_theme', 'portfoliojg_content_width', 0 );
 
-/**
- * Register widget area.
- *
- * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
- */
-function portfoliojg_widgets_init() {
-	register_sidebar(
-		array(
-			'name'          => esc_html__( 'Sidebar', 'portfoliojg' ),
-			'id'            => 'sidebar-1',
-			'description'   => esc_html__( 'Add widgets here.', 'portfoliojg' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
-		)
-	);
-}
-add_action( 'widgets_init', 'portfoliojg_widgets_init' );
+
 
 /**
  * Enqueue scripts and styles.
@@ -189,3 +176,7 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+/**
+ * Load Widgets file.
+ */
+require get_template_directory() . '/inc/widgets.php';

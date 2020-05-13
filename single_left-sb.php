@@ -1,6 +1,7 @@
 <?php
 /**
- * The template for displaying all single posts
+ * Template name: Left SideBar Template
+ * Template Post Type: Post
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
  *
@@ -11,6 +12,10 @@ get_header();
 ?>
 
 	<div class="row">
+
+        <div class="col-md-4">
+				<?php get_sidebar(); ?>
+		</div>
 
 		<div id="primary" class="content-area col-md-8">
 
@@ -42,9 +47,7 @@ get_header();
 			</main><!-- #main -->
 		</div>
 
-		<div class="col-md-4">
-				<?php get_sidebar(); ?>
-		</div>
+		
 
 
 <?php
